@@ -1,0 +1,39 @@
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-4">Job Name</label>
+        <input type="text" class="form-control" 
+          formControlName="JobName" 
+          #JobName />
+      </div>
+      <div *ngIf="angForm.controls['JobName'].invalid && (angForm.controls['JobName'].dirty || angForm.controls['JobName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['JobName'].errors.required">
+          Job Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Job Description </label>
+        <textarea class="form-control" rows = 7 cols = "5"
+        formControlName="JobDescription" 
+        #JobDescription></textarea>
+      </div>
+      <div *ngIf="angForm.controls['JobDescription'].invalid && (angForm.controls['JobDescription'].dirty || angForm.controls['JobDescription'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['JobDescription'].errors.required">
+          Job Description is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+					<button (click) = "addJob(JobName.value, JobDescription.value)" type="submit" class="btn btn-primary"
+					[disabled]="angForm.pristine || angForm.invalid" >
+				  Create Job
+				</button>
+			</div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-4">Job Name</label>
+        <input type="text" class="form-control" 
+          formControlName="JobName" 
+          #JobName 
+          [(ngModel)] = "job.JobName"/>
+      </div>
+      <div *ngIf="angForm.controls['JobName'].invalid && (angForm.controls['JobName'].dirty || angForm.controls['JobName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['JobName'].errors.required">
+          Job Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Job Description </label>
+        <textarea class="form-control" rows = 7 cols = "5"
+        formControlName="JobDescription" 
+        #JobDescription [(ngModel)] = "job.JobDescription"></textarea>
+      </div>
+      <div *ngIf="angForm.controls['JobDescription'].invalid && (angForm.controls['JobDescription'].dirty || angForm.controls['JobDescription'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['JobDescription'].errors.required">
+          Job Description is required.
+        </div>
+      </div>
+      
+
+      <div class="form-group">
+        <button (click) = "updateJob(JobName.value, JobDescription.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Update Job
+        </button>
+        <a (click) = "deleteJob(job._id)" class="btn btn-danger">Delete</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- 
+
+
+<table class="table table-hover">
+	<form [formGroup]="corrForm" novalidate>
+	  <thead>
+	  <tr>
+	      <td>Name</td>
+	      <td>Date</td>
+	  </tr>
+	  </thead>
+
+	  <tbody>
+	  	<tr><td>
+	  		<div class="form-group">
+	        <input type="text" class="form-control" 
+	          formControlName="CorrName" 
+	          #CorrName />
+	      </div>
+	      <div *ngIf="corrForm.controls['CorrName'].invalid && (corrForm.controls['CorrName'].dirty || corrForm.controls['CorrName'].touched)" class="alert alert-danger">
+	        <div *ngIf="corrForm.controls['CorrName'].errors.required">
+	          Name is required.
+	        </div>
+	      </div>
+	  	</td></tr>
+
+	  	<tr><td>
+	  		<div class="form-group">
+	        <input type="text" class="form-control" 
+	          formControlName="CorrDesc" 
+	          #CorrDesc  />
+	      </div>
+	      <div *ngIf="corrForm.controls['CorrDesc'].invalid && (corrForm.controls['CorrDesc'].dirty || corrForm.controls['CorrDesc'].touched)" class="alert alert-danger">
+	        <div *ngIf="corrForm.controls['CorrDesc'].errors.required">
+	          Desc is required.
+	        </div>
+	      </div>
+	  	</td></tr>
+
+	  	<tr><td>
+	  		<div class="form-group">
+	        <input type="text" class="form-control" 
+	          formControlName="CorrLink" 
+	          #CorrLink  />
+	      </div>
+	      <div *ngIf="corrForm.controls['CorrLink'].invalid && (corrForm.controls['CorrLink'].dirty || corrForm.controls['CorrLink'].touched)" class="alert alert-danger">
+	      </div>
+	  	</td></tr>
+
+	  	<tr><td>
+	  		<div class="form-group">
+	        <button (click) = "updateCorr(CorrName.value, CorrDesc.value, CorrLink.value)" type="submit" class="btn btn-primary"
+	        [disabled]="corrForm.invalid" >
+	          Update Corr
+	        </button>
+      	</div>
+      </td></tr>
+	  	
+	      <tr *ngFor="let corr of corrs">
+	          <td>{{ corr.CorrName }}</td>
+	          <td>{{ corr.CorrDateTime }}</td>
+	          <td>{{ corr.CorrDesc }}</td>
+	          <td>{{ corr.CorrLink }}</td>
+	          <td><a (click) = "deleteCorr(corr._id)" class="btn btn-danger">Delete</a></td>
+	      </tr>
+	  </tbody>
+	</form>
+</table>
+
+ -->
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Corr Name</td>
+      <td>Corr DateTime</td>
+      <td>Corr Desc</td>
+      <td>Corr Link</td>
+      <td >Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let corr of corrs">
+          <td>{{ corr.CorrName }}</td>
+          <td>{{ corr.CorrDateTime | date:'medium'}}</td>
+          <td>{{ corr.CorrDesc }}</td>
+          <td>{{ corr.CorrLink }}</td>
+          <td><a (click) = "deleteCorr(job._id, corr._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="corrForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-4">Corr Name</label>
+        <input type="text" class="form-control" 
+          formControlName="CorrName" 
+          #CorrName />
+      </div>
+      <div *ngIf="corrForm.controls['CorrName'].invalid && (corrForm.controls['CorrName'].dirty || corrForm.controls['CorrName'].touched)" class="alert alert-dcorrer">
+        <div *ngIf="corrForm.controls['CorrName'].errors.required">
+          Corr Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Corr Desc</label>
+        <input type="text" class="form-control" 
+          formControlName="CorrDesc" 
+          #CorrDesc />
+      </div>
+      <div *ngIf="corrForm.controls['CorrDesc'].invalid && (corrForm.controls['CorrDesc'].dirty || corrForm.controls['CorrDesc'].touched)" class="alert alert-dcorrer">
+        <div *ngIf="corrForm.controls['CorrDesc'].errors.required">
+          CorrDesc is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">CorrLink</label>
+        <input type="text" class="form-control" 
+          formControlName="CorrLink" 
+          #CorrLink />
+      </div>
+      <div *ngIf="corrForm.controls['CorrLink'].invalid && (corrForm.controls['CorrLink'].dirty || corrForm.controls['CorrLink'].touched)" class="alert alert-dcorrer">
+        <div *ngIf="corrForm.controls['CorrLink'].errors.required">
+          Corr Name is required.
+        </div>
+      </div>
+
+      
+
+      <div class="form-group">
+				<button (click) = "updateCorr(CorrName.value, CorrDesc.value, CorrLink.value, job._id)" type="submit" class="btn btn-primary"
+	        [disabled]="corrForm.invalid" >
+	          Update Corr
+	        </button>
+			</div>
+
+    </form>
+  </div>
+</div>

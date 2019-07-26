@@ -1,0 +1,25 @@
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Job Name</td>
+      <td>Job Description</td>
+      <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let job of jobs">
+          <td><a [routerLink]="['/edit', job._id]" class="btn btn-primary">
+          	{{ job.JobName }}
+          </a></td>
+          <td>{{ job.JobDescription }}</td>
+          <td>
+            <select   (change)="changeStatus($event, job._id)">
+              <option value="{{job.status}}">{{job.status}}</option> 
+              <option *ngFor="let status of statuses">{{status.name}}</option>
+            </select>
+          </td>
+      </tr>
+  </tbody>
+</table>

@@ -62,3 +62,92 @@ Add here credits. Project inspired by..., based on...
 
 ## Contact
 Created by [@vulpineblaze](https://github.com/vulpineblaze) - feel free to contact me!
+
+---
+
+## Raw Commands
+List of various commands used to get the server working. *Caution: May not be in correct order.*
+
+```
+sudo apt-get update
+sudo apt-get install nginx 
+sudo apt-get install nodejs npm
+
+sudo service apache2 stop # not loaded
+sudo service  nginx restart
+
+# change servername to localhost
+sudo vim /etc/nginx/sites-available/default 
+
+# allow nginx to route requests from that subdomain to the app
+sudo vim /etc/nginx/sites-available/printshop
+sudo ln -s /etc/nginx/sites-available/printshop /etc/nginx/sites-enabled/printshop
+sudo service  nginx restart
+
+# global angular install
+sudo npm install --unsafe-perm -g @angular/cli
+
+cd /var/www
+
+ng new printshop
+
+# These will go into package.json, but I'm rebooting the project for fresh everything
+# npm install body-parser chai chromedriver ejs express express-session mocha mongodb nodemon passport passport-github passport-google passport-google-oauth selenium-webdriver --save
+
+cd printshop
+npm install
+
+npm start  #fire up angular via package.json command
+
+ng g c job-add --skipTests=true
+ng g c job-get --skipTests=true
+ng g c job-edit --skipTests=true
+
+npm install ng2-slim-loading-bar rxjs-compat  --save
+
+ng g service jobs --skipTests=true
+
+# add proxy.json to npm start for angular package.json
+
+cd api
+npm init -y
+npm install express body-parser cors mongoose --save
+npm install nodemon --save-dev
+cd $PWD  #got a weird error, possibly how i did api/
+npm install
+npm start  #after I edited package.json
+
+-----
+
+
+
+
+
+
+sudo mkdir /var/www/printshop
+sudo chmod -R 2777 /var/www/printshop
+
+# Didnt have node v10 for Angular
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Should be 10 and 6, respectively
+node -v ; npm -v
+
+cd /var/www/printshop
+
+# These will go into package.json, but I'm rebooting the project for fresh everything
+npm install body-parser chai chromedriver ejs express express-session mocha mongodb nodemon passport passport-github passport-google passport-google-oauth selenium-webdriver --save
+
+# global angular install
+npm install -g @angular/cli
+npm install --unsafe-perm -g @angular/cli
+
+sudo ng new printshop
+
+sudo chmod -R 777 /home/ps
+npm install
+
+
+
+```
