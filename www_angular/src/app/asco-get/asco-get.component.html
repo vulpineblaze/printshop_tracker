@@ -1,0 +1,18 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Asco Name</td>
+      <td >Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let asco of ascos">
+          <td><a [routerLink]="['/asco', asco._id]" class="btn btn-primary">
+            {{ asco.AscoName }}
+          </a></td>
+          <td> More to come ... </td>
+          <td> like Addr and Contacts ... </td>
+      </tr>
+  </tbody>
+</table>

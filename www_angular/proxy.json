@@ -2,5 +2,9 @@
 	"/jobs/*": {
 		"target": "http://localhost:4000",
 		"secure": "false"
+	},
+	"/ascos/*": {
+		"target": "http://localhost:4000",
+		"secure": "false"
 	}
 }

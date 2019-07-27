@@ -6,19 +6,26 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { JobsService } from './jobs.service';
+import { AscosService } from './ascos.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobAddComponent } from './job-add/job-add.component';
 import { JobGetComponent } from './job-get/job-get.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
+import { AscoAddComponent } from './asco-add/asco-add.component';
+import { AscoGetComponent } from './asco-get/asco-get.component';
+import { AscoEditComponent } from './asco-edit/asco-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     JobAddComponent,
     JobGetComponent,
-    JobEditComponent
+    JobEditComponent,
+    AscoAddComponent,
+    AscoGetComponent,
+    AscoEditComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,7 @@ import { JobEditComponent } from './job-edit/job-edit.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [JobsService],
+  providers: [JobsService, AscosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

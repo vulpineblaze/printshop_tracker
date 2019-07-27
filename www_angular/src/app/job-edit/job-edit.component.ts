@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JobsService } from '../jobs.service';
 
 import Corr from '../Corr';
+import Acl from '../Acl';
 
 
 @Component({
@@ -15,8 +16,10 @@ export class JobEditComponent implements OnInit {
 
   angForm: FormGroup;
   corrForm: FormGroup;
+  aclForm: FormGroup;
   job: any = {};
   corrs: Corr[];
+  acls: Acl[];
 
 
   constructor(private route: ActivatedRoute, 
@@ -25,6 +28,7 @@ export class JobEditComponent implements OnInit {
                 private fb: FormBuilder) {
       this.createAngForm();
       this.createCorrForm();
+      this.createAclForm();
  }
 
   createAngForm() {
@@ -39,6 +43,15 @@ export class JobEditComponent implements OnInit {
       CorrName: ['', Validators.required ],
       CorrDesc: ['', Validators.required ],
       CorrLink: ['']
+    });
+  }
+
+  createAclForm() {
+    this.aclForm = this.fb.group({
+      AclDesc: ['', Validators.required ],
+      AclLink: [''],
+      AclQty: ['1', Validators.required ],
+      AclCost: ['', Validators.required ]
     });
   }
 
@@ -58,10 +71,18 @@ export class JobEditComponent implements OnInit {
         this.createCorrForm();
       });
 
+    });
 
+  }
 
-      // this.refreshCorrs(params['id']);
-      // this.router.navigate(['edit/'+params.id]);
+  updateAcl(AclDesc, AclLink, AclQty, AclCost, AclID, id) {
+    this.route.params.subscribe(params => {
+      this.ps.updateAcl(AclDesc, AclLink, AclQty, AclCost, AclID, params.id)
+      .subscribe(res => {
+        this.refreshAcls(params.id);
+        this.createAclForm();
+      });
+
     });
 
   }
@@ -72,6 +93,7 @@ export class JobEditComponent implements OnInit {
         this.job = res;
       });
       this.refreshCorrs(params['id']);
+      this.refreshAcls(params['id']);
     });
 
     
@@ -91,6 +113,11 @@ export class JobEditComponent implements OnInit {
       this.refreshCorrs(job);
     });
   }
+  deleteAcl(job, id) {
+    this.ps.deleteAcl(id).subscribe(res => {
+      this.refreshAcls(job);
+    });
+  }
 
   refreshCorrs(id){
     console.log("Refresh Corrs");
@@ -98,6 +125,15 @@ export class JobEditComponent implements OnInit {
         .getCorrs(id)
         .subscribe((data: Corr[]) => {
           this.corrs = data; 
+      });
+  }
+
+  refreshAcls(id){
+    console.log("Refresh Acls");
+    this.ps
+        .getAcls(id)
+        .subscribe((data: Acl[]) => {
+          this.acls = data; 
       });
   }
 

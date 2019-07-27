@@ -40,74 +40,11 @@
     </form>
   </div>
 </div>
+
+
 <!-- 
 
-
-<table class="table table-hover">
-	<form [formGroup]="corrForm" novalidate>
-	  <thead>
-	  <tr>
-	      <td>Name</td>
-	      <td>Date</td>
-	  </tr>
-	  </thead>
-
-	  <tbody>
-	  	<tr><td>
-	  		<div class="form-group">
-	        <input type="text" class="form-control" 
-	          formControlName="CorrName" 
-	          #CorrName />
-	      </div>
-	      <div *ngIf="corrForm.controls['CorrName'].invalid && (corrForm.controls['CorrName'].dirty || corrForm.controls['CorrName'].touched)" class="alert alert-danger">
-	        <div *ngIf="corrForm.controls['CorrName'].errors.required">
-	          Name is required.
-	        </div>
-	      </div>
-	  	</td></tr>
-
-	  	<tr><td>
-	  		<div class="form-group">
-	        <input type="text" class="form-control" 
-	          formControlName="CorrDesc" 
-	          #CorrDesc  />
-	      </div>
-	      <div *ngIf="corrForm.controls['CorrDesc'].invalid && (corrForm.controls['CorrDesc'].dirty || corrForm.controls['CorrDesc'].touched)" class="alert alert-danger">
-	        <div *ngIf="corrForm.controls['CorrDesc'].errors.required">
-	          Desc is required.
-	        </div>
-	      </div>
-	  	</td></tr>
-
-	  	<tr><td>
-	  		<div class="form-group">
-	        <input type="text" class="form-control" 
-	          formControlName="CorrLink" 
-	          #CorrLink  />
-	      </div>
-	      <div *ngIf="corrForm.controls['CorrLink'].invalid && (corrForm.controls['CorrLink'].dirty || corrForm.controls['CorrLink'].touched)" class="alert alert-danger">
-	      </div>
-	  	</td></tr>
-
-	  	<tr><td>
-	  		<div class="form-group">
-	        <button (click) = "updateCorr(CorrName.value, CorrDesc.value, CorrLink.value)" type="submit" class="btn btn-primary"
-	        [disabled]="corrForm.invalid" >
-	          Update Corr
-	        </button>
-      	</div>
-      </td></tr>
-	  	
-	      <tr *ngFor="let corr of corrs">
-	          <td>{{ corr.CorrName }}</td>
-	          <td>{{ corr.CorrDateTime }}</td>
-	          <td>{{ corr.CorrDesc }}</td>
-	          <td>{{ corr.CorrLink }}</td>
-	          <td><a (click) = "deleteCorr(corr._id)" class="btn btn-danger">Delete</a></td>
-	      </tr>
-	  </tbody>
-	</form>
-</table>
+Corr zone
 
  -->
 
@@ -182,6 +119,103 @@
 				<button (click) = "updateCorr(CorrName.value, CorrDesc.value, CorrLink.value, job._id)" type="submit" class="btn btn-primary"
 	        [disabled]="corrForm.invalid" >
 	          Update Corr
+	        </button>
+			</div>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- ACL -->
+
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Acl DateTime</td>
+      <td>Acl Desc</td>
+      <td>Acl Link</td>
+      <td>Acl Qty</td>
+      <td>Acl Cost</td>
+      <td >Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let acl of acls">
+          <td>{{ acl.AclDateTime | date:'medium'}}</td>
+          <td>{{ acl.AclDesc }}</td>
+          <td>{{ acl.AclLink }}</td>
+          <td>{{ acl.AclQty }}</td>
+          <td>{{ acl.AclCost }}</td>
+          <td><a (click) = "deleteAcl(job._id, acl._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<div class="card">
+  <div class="card-body">
+
+    <form [formGroup]="aclForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-4">Acl Desc</label>
+        <input type="text" class="form-control" 
+          formControlName="AclDesc" 
+          #AclDesc />
+      </div>
+      <div *ngIf="aclForm.controls['AclDesc'].invalid && (aclForm.controls['AclDesc'].dirty || aclForm.controls['AclDesc'].touched)" class="alert alert-dacler">
+        <div *ngIf="aclForm.controls['AclDesc'].errors.required">
+          AclDesc is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">AclLink</label>
+        <input type="text" class="form-control" 
+          formControlName="AclLink" 
+          #AclLink />
+      </div>
+      <div *ngIf="aclForm.controls['AclLink'].invalid && (aclForm.controls['AclLink'].dirty || aclForm.controls['AclLink'].touched)" class="alert alert-dacler">
+        <div *ngIf="aclForm.controls['AclLink'].errors.required">
+          Acl Link is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">AclQty</label>
+        <input type="text" class="form-control" 
+          formControlName="AclQty" 
+          #AclQty />
+      </div>
+      <div *ngIf="aclForm.controls['AclQty'].invalid && (aclForm.controls['AclQty'].dirty || aclForm.controls['AclQty'].touched)" class="alert alert-dacler">
+        <div *ngIf="aclForm.controls['AclQty'].errors.required">
+          Acl Qty is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">AclCost</label>
+        <input type="text" class="form-control" 
+          formControlName="AclCost" 
+          #AclCost />
+      </div>
+      <div *ngIf="aclForm.controls['AclCost'].invalid && (aclForm.controls['AclCost'].dirty || aclForm.controls['AclCost'].touched)" class="alert alert-dacler">
+        <div *ngIf="aclForm.controls['AclCost'].errors.required">
+          Acl Cost is required.
+        </div>
+      </div>
+
+      
+
+      <div class="form-group">
+				<button (click) = "updateAcl(AclDesc.value, AclLink.value, AclQty.value, AclCost.value, job._id)" type="submit" class="btn btn-primary"
+	        [disabled]="aclForm.invalid" >
+	          Update Acl
 	        </button>
 			</div>
 

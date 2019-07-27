@@ -1,0 +1,262 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-4">Asco Name</label>
+        <input type="text" class="form-control" 
+          formControlName="AscoName" 
+          #AscoName 
+          [(ngModel)] = "asco.AscoName"/>
+      </div>
+      <div *ngIf="angForm.controls['AscoName'].invalid && (angForm.controls['AscoName'].dirty || angForm.controls['AscoName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['AscoName'].errors.required">
+          Asco Name is required.
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button (click) = "updateAsco(AscoName.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Update Asco
+        </button>
+        <a (click) = "deleteAsco(asco._id)" class="btn btn-danger">Delete</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+<!-- ADDR ZONE -->
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td colspan="6">Addr 1 thru 6</td>
+      <td >Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let addr of addrs">
+          <td>{{ addr.Addr1 }}</td>
+          <td>{{ addr.Addr2 }}</td>
+          <td>{{ addr.Addr3 }}</td>
+          <td>{{ addr.Addr4 }}</td>
+          <td>{{ addr.Addr5 }}</td>
+          <td>{{ addr.Addr6 }}</td>
+          <td><a (click) = "deleteAddr(asco._id, addr._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="addrForm" novalidate>
+
+<!-- ADDR 1 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 1</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr1" 
+          #Addr1 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr1'].invalid && (addrForm.controls['Addr1'].dirty || addrForm.controls['Addr1'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr1'].errors.required">
+          Addr 1 is required.
+        </div>
+      </div>
+
+<!-- ADDR 2 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 2</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr2" 
+          #Addr2 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr2'].invalid && (addrForm.controls['Addr2'].dirty || addrForm.controls['Addr2'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr2'].errors.required">
+          Addr 2 is required.
+        </div>
+      </div>
+
+<!-- ADDR 3 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 3</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr3" 
+          #Addr3 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr3'].invalid && (addrForm.controls['Addr3'].dirty || addrForm.controls['Addr3'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr3'].errors.required">
+          Addr 3 is required.
+        </div>
+      </div>
+
+<!-- ADDR 4 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 4</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr4" 
+          #Addr4 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr4'].invalid && (addrForm.controls['Addr4'].dirty || addrForm.controls['Addr4'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr4'].errors.required">
+          Addr 4 is required.
+        </div>
+      </div>
+
+<!-- ADDR 5 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 5</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr5" 
+          #Addr5 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr5'].invalid && (addrForm.controls['Addr5'].dirty || addrForm.controls['Addr5'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr5'].errors.required">
+          Addr 5 is required.
+        </div>
+      </div>
+
+<!-- ADDR 6 -->
+      <div class="form-group">
+        <label class="col-md-4">Addr 6</label>
+        <input type="text" class="form-control" 
+          formControlName="Addr6" 
+          #Addr6 />
+      </div>
+      <div *ngIf="addrForm.controls['Addr6'].invalid && (addrForm.controls['Addr6'].dirty || addrForm.controls['Addr6'].touched)" class="alert alert-daddrer">
+        <div *ngIf="addrForm.controls['Addr6'].errors.required">
+          Addr 6 is required.
+        </div>
+      </div>
+
+      
+
+      
+
+      <div class="form-group">
+				<button (click) = "updateAddr(Addr1.value, Addr2.value, Addr3.value, Addr4.value, Addr5.value, Addr6.value, asco._id)" type="submit" class="btn btn-primary"
+	        [disabled]="addrForm.invalid" >
+	          Update Addr
+	        </button>
+			</div>
+
+    </form>
+  </div>
+</div>
+
+
+
+<!-- CONTACT ZONE -->
+
+
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Contact Name</td>
+      <td>Contact Email</td>
+      <td>Contact Phone</td>
+      <td>Contact Note</td>
+      <td >Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let contact of contacts">
+          <td>{{ contact.ContactName }}</td>
+          <td>{{ contact.ContactEmail }}</td>
+          <td>{{ contact.ContactPhone }}</td>
+          <td>{{ contact.ContactNote }}</td>
+          <td><a (click) = "deleteContact(asco._id, contact._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="contactForm" novalidate>
+
+<!-- ContactName -->
+      <div class="form-group">
+        <label class="col-md-4">ContactName</label>
+        <input type="text" class="form-control" 
+          formControlName="ContactName" 
+          #ContactName />
+      </div>
+      <div *ngIf="contactForm.controls['ContactName'].invalid && (contactForm.controls['ContactName'].dirty || contactForm.controls['ContactName'].touched)" class="alert alert-dcontacter">
+        <div *ngIf="contactForm.controls['ContactName'].errors.required">
+          ContactName is required.
+        </div>
+      </div>
+
+<!-- ContactEmail -->
+      <div class="form-group">
+        <label class="col-md-4">ContactEmail</label>
+        <input type="text" class="form-control" 
+          formControlName="ContactEmail" 
+          #ContactEmail />
+      </div>
+      <div *ngIf="contactForm.controls['ContactEmail'].invalid && (contactForm.controls['ContactEmail'].dirty || contactForm.controls['ContactEmail'].touched)" class="alert alert-dcontacter">
+        <div *ngIf="contactForm.controls['ContactEmail'].errors.required">
+          ContactEmail is required.
+        </div>
+      </div>
+
+<!-- ContactPhone -->
+      <div class="form-group">
+        <label class="col-md-4">ContactPhone</label>
+        <input type="text" class="form-control" 
+          formControlName="ContactPhone" 
+          #ContactPhone />
+      </div>
+      <div *ngIf="contactForm.controls['ContactPhone'].invalid && (contactForm.controls['ContactPhone'].dirty || contactForm.controls['ContactPhone'].touched)" class="alert alert-dcontacter">
+        <div *ngIf="contactForm.controls['ContactPhone'].errors.required">
+          ContactPhone is required.
+        </div>
+      </div>
+
+<!-- ContactNote -->
+      <div class="form-group">
+        <label class="col-md-4">ContactNote</label>
+        <input type="text" class="form-control" 
+          formControlName="ContactNote" 
+          #ContactNote />
+      </div>
+      <div *ngIf="contactForm.controls['ContactNote'].invalid && (contactForm.controls['ContactNote'].dirty || contactForm.controls['ContactNote'].touched)" class="alert alert-dcontacter">
+        <div *ngIf="contactForm.controls['ContactNote'].errors.required">
+          ContactNote is required.
+        </div>
+      </div>
+
+      
+
+      <div class="form-group">
+				<button (click) = "updateContact(ContactName.value, ContactEmail.value, ContactPhone.value, ContactNote.value, asco._id)" type="submit" class="btn btn-primary"
+	        [disabled]="contactForm.invalid" >
+	          Update Contact
+	        </button>
+			</div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+

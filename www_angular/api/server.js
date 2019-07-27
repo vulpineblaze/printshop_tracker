@@ -7,6 +7,7 @@ const express = require('express'),
     config = require('./DB');
 
    const jobRoute = require('./routes/job.route');
+   const ascoRoute = require('./routes/asco.route');
 
     mongoose.Promise = global.Promise;
     mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -17,6 +18,7 @@ const express = require('express'),
     const app = express();
     app.use(bodyParser.json());
     app.use(cors());
+    app.use('/ascos', ascoRoute);
     app.use('/jobs', jobRoute);
 
     const port = process.env.PORT || 4000;

@@ -32,6 +32,11 @@ export class JobsService {
            .http
            .get(`${this.uri}/corr/${id}`);
   }
+  getAcls(id) {
+    return this
+           .http
+           .get(`${this.uri}/acl/${id}`);
+  }
 
   editJob(id) {
     return this
@@ -59,6 +64,15 @@ export class JobsService {
       .post(`${this.uri}/corr/${id}/update`, obj);
   }
 
+  updateAcl(AclDesc, AclLink, AclQty, AclCost, AclID, id) {
+    const aclObj = {
+      AclDesc, AclLink, AclQty, AclCost, AclID
+    };
+    return this
+      .http
+      .post(`${this.uri}/acl/${id}/update`, aclObj);
+  }
+
   deleteJob(id) {
     return this
               .http
@@ -69,6 +83,12 @@ export class JobsService {
     return this
               .http
               .get(`${this.uri}/corr/${id}/delete`);
+  }
+
+  deleteAcl(id) {
+    return this
+              .http
+              .get(`${this.uri}/acl/${id}/delete`);
   }
 
   updateStatus(status,id){
